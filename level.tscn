@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc6ca7f410mbk"]
+
+[ext_resource type="Script" path="res://Camera3D.gd" id="1_j044a"]
+[ext_resource type="PackedScene" uid="uid://bjpgn7t8ti554" path="res://marker.tscn" id="2_kc54b"]
+[ext_resource type="PackedScene" uid="uid://bituefuciobuc" path="res://test.blend" id="3_03pws"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e77oa"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_2xvlh"]
+sky_material = SubResource("ProceduralSkyMaterial_e77oa")
+
+[sub_resource type="Environment" id="Environment_kbtod"]
+background_mode = 2
+sky = SubResource("Sky_2xvlh")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kbtod")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55652, 0, 4.1711)
+use_collision = true
+radius = 4.8043
+height = 5.93278
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.819152, -0.287646, 0.496235, 0, 0.86516, 0.501496, -0.573576, -0.410801, 0.708698, 6.42059, 6.48876, 9.45696)
+script = ExtResource("1_j044a")
+
+[node name="marker" parent="." instance=ExtResource("2_kc54b")]
+
+[node name="test" parent="." instance=ExtResource("3_03pws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.64462, 9.53674e-07, -1.65144)

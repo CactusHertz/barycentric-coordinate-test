@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjpgn7t8ti554"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym1y4"]
+shading_mode = 0
+albedo_color = Color(2.11775e-06, 0.584018, 0.778798, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cfpuh"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_syj2c"]
+size = Vector3(0.05, 2, 0.05)
+
+[node name="marker" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ym1y4")
+mesh = SubResource("SphereMesh_cfpuh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_ym1y4")
+mesh = SubResource("BoxMesh_syj2c")
