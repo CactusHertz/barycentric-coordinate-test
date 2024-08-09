@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 0.911137, 0.412103, 0, -0.412103, 0.911137, 
 script = ExtResource("1_j044a")
 
 [node name="marker" parent="." instance=ExtResource("2_kc54b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0151, 9.53674e-07, 4.63402)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0151, 9.53674e-07, 6.63402)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

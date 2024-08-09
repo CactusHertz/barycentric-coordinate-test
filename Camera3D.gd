@@ -29,14 +29,23 @@ func shoot_ray():
 
 
 		#set_up_direction(raycast_result["normal"], marker)
-		marker.look_at(marker.global_position - raycast_result["normal"], marker.global_position)
-		
+		#marker.look_at(raycast_result["position"] + raycast_result["normal"], marker.basis * Vector3.UP)
+		align_to_floor(raycast_result["normal"], marker)
 		
 		print(marker.rotation)
 	else:
 		marker.visible = false
 	
-func set_up_direction(up_normal: Vector3, node : Node3D) -> void:
+	
+func align_to_floor(up_normal: Vector3, marker: Node3D):
+	var forward = marker.transform.basis.z
+	var up = up_normal.normalized()
+	var right = up.cross(forward).normalized()
+	forward = right.cross(up).normalized()
+	var new_basis = Basis(right, up, forward)
+	marker.transform.basis = new_basis
+	
+func set_up_direction(up_normal: Vector3, node: Node3D) -> void:
 	var new_basis: Basis = node.transform.basis
 	new_basis.y = up_normal
 	new_basis.x = -node.basis.z.cross(node.basis.y)
