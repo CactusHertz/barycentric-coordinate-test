@@ -26,10 +26,9 @@ func shoot_ray():
 		marker.visible = true
 		
 		marker.position = raycast_result["position"]
-
-
-		#set_up_direction(raycast_result["normal"], marker)
-		#marker.look_at(raycast_result["position"] + raycast_result["normal"], marker.basis * Vector3.UP)
+		
+		var mesh_obj = raycast_result["collider"].get_parent()
+		
 		align_to_floor(raycast_result["normal"], marker)
 		
 		print(marker.rotation)
@@ -44,15 +43,9 @@ func align_to_floor(up_normal: Vector3, marker: Node3D):
 	forward = right.cross(up).normalized()
 	var new_basis = Basis(right, up, forward)
 	marker.transform.basis = new_basis
-	
-func set_up_direction(up_normal: Vector3, node: Node3D) -> void:
-	var new_basis: Basis = node.transform.basis
-	new_basis.y = up_normal
-	new_basis.x = -node.basis.z.cross(node.basis.y)
-	new_basis = new_basis.orthonormalized()
-	node.basis = new_basis
-	
-	
+
+
+
 func get_vertex_normals_at_face_index(index: float, mesh_data: MeshDataTool) -> Array[Vector3]:
 	var normals: Array[Vector3] = []
 	for i in range(0, 3):
