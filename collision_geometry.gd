@@ -2,13 +2,12 @@ extends Node3D
 class_name CollisionGeometry
 
 
-@onready var mesh: Mesh = $Cube.mesh
+@onready var mesh: Mesh = get_parent().mesh
 var mesh_data: MeshDataTool
 
 func _ready() -> void:
 	mesh_data = MeshDataTool.new()
-	mesh_data.create_from_surface(mesh, 0)
-
+	mesh_data.create_from_surface(mesh,0)
 
 func get_vertex_normals_at_face_index(index: float) -> Array[Vector3]:
 	var normals: Array[Vector3] = []
@@ -21,3 +20,4 @@ func get_vertex_positions_at_face_index(index: float) -> Array[Vector3]:
 	for i in range(0, 3):
 		vertices.append(mesh_data.get_vertex(mesh_data.get_face_vertex(index, i)))
 	return vertices
+
