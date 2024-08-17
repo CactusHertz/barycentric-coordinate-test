@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc6ca7f410mbk"]
+[gd_scene load_steps=9 format=3 uid="uid://cc6ca7f410mbk"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_j044a"]
 [ext_resource type="PackedScene" uid="uid://bjpgn7t8ti554" path="res://marker.tscn" id="2_kc54b"]
+[ext_resource type="Script" path="res://FPS.gd" id="3_4pixf"]
 [ext_resource type="PackedScene" uid="uid://lqfk1r0nrd6k" path="res://road.blend" id="3_yo27k"]
 [ext_resource type="Script" path="res://collision_geometry.gd" id="4_gx1m1"]
 
@@ -28,7 +29,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.911137, 0.412103, 0, -0.412103, 0.911137, 0, 10.547, 18.1254)
+transform = Transform3D(0.965926, -0.10666, 0.23582, 8.16864e-09, 0.911137, 0.412103, -0.258819, -0.398061, 0.880091, -3, 10.547, 18.1254)
 script = ExtResource("1_j044a")
 
 [node name="marker" parent="." instance=ExtResource("2_kc54b")]
@@ -43,6 +44,16 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 
+[node name="FPS" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+text = "FPS
+"
+script = ExtResource("3_4pixf")
+
 [node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -53,12 +64,12 @@ text = "Test
 "
 
 [node name="road" parent="." instance=ExtResource("3_yo27k")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.16996, 0, 2.45028)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Road" parent="road" index="0"]
+visible = false
 
 [node name="StaticBody3D" parent="road/Road" index="0"]
 script = ExtResource("4_gx1m1")
-
-[node name="marker2" parent="." instance=ExtResource("2_kc54b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
 [editable path="road"]

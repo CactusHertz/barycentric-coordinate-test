@@ -35,27 +35,26 @@ func shoot_ray():
 	
 	if !raycast_result.is_empty():
 		marker.visible = true
-		
 		marker.position = raycast_result["position"]
-		
+
+
 		var col = raycast_result["collider"]
-		
 		var vertices = col.get_vertex_positions_at_face_index(raycast_result["face_index"])
+	
 		var vertex_normals = col.get_vertex_normals_at_face_index(raycast_result["face_index"])
+		if Input.is_action_just_pressed("click"):
+			print("vetices: " + str(vertices))
+			print("normals: " + str(vertex_normals))
 		var bary_coords: Vector3 = Geometry3D.get_triangle_barycentric_coords(raycast_result["position"], vertices[0], vertices[1], vertices[2])
 		var up_normal: Vector3 = (vertex_normals[0] * bary_coords.x) + (vertex_normals[1] * bary_coords.y) + (vertex_normals[2] * bary_coords.z)
 		up_normal = up_normal.normalized()
+		marker.up_normal = up_normal
 		
-		print(raycast_result["normal"])
-		print(up_normal)
-		
-		
-		
-		#for x in range(3):
-			#dots[x].position = vertices[x]
+		for x in range(3):
+			dots[x].position = vertices[x]
 
 
-		align_to_floor(up_normal, marker)
+		#align_to_floor(up_normal, marker)
 		#align_to_floor(raycast_result["normal"], marker)
 
 	else:
@@ -71,21 +70,3 @@ func align_to_floor(up_normal: Vector3, marker: Node3D):
 	marker.transform.basis = new_basis
 
 
-'''
-func get_vertex_normals_at_face_index(index: float, mesh_data: MeshDataTool) -> Array[Vector3]:
-	var normals: Array[Vector3] = []
-	for i in range(0, 3):
-		normals.append(mesh_data.get_vertex_normal(mesh_data.get_face_vertex(index, i)))
-	return normals
-
-func get_vertex_positions_at_face_index(index: float, mesh_data: MeshDataTool) -> Array[Vector3]:
-	var vertices: Array[Vector3] = []
-	for i in range(0, 3):
-		vertices.append(mesh_data.get_vertex(mesh_data.get_face_vertex(index, i)))
-	return vertices
-
-	if !raycast_result.is_empty():
-		var instance = marker.instantiate()
-		instance.position = raycast_result["position"]
-		$'../'.add_child(instance)
-'''
