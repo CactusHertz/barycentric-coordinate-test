@@ -66,9 +66,6 @@ text = "Test
 [node name="road" parent="." instance=ExtResource("3_yo27k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Road" parent="road" index="0"]
-visible = false
-
 [node name="StaticBody3D" parent="road/Road" index="0"]
 script = ExtResource("4_gx1m1")
 

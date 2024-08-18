@@ -1,12 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnvcw2cvx2ef4"]
+[gd_scene load_steps=5 format=3 uid="uid://cnvcw2cvx2ef4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kak6u"]
+shading_mode = 0
 albedo_color = Color(1, 0.171185, 0.921633, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qwom7"]
 radius = 0.2
 height = 0.4
 
+[sub_resource type="BoxMesh" id="BoxMesh_fpgix"]
+size = Vector3(0.1, 2, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_us714"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.4
+
 [node name="dot" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_kak6u")
 mesh = SubResource("SphereMesh_qwom7")
+
+[node name="line" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_kak6u")
+mesh = SubResource("BoxMesh_fpgix")
+
+[node name="point" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_kak6u")
+mesh = SubResource("CylinderMesh_us714")

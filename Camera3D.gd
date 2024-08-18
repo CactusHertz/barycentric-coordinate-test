@@ -52,6 +52,7 @@ func shoot_ray():
 		
 		for x in range(3):
 			dots[x].position = vertices[x]
+			dots[x].rotation = vertex_normals[x]
 
 
 		#align_to_floor(up_normal, marker)
