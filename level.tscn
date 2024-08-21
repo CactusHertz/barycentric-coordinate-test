@@ -64,9 +64,11 @@ text = "Test
 "
 
 [node name="road" parent="." instance=ExtResource("3_yo27k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="StaticBody3D" parent="road/Road" index="0"]
+[node name="StaticBody3D" parent="road/Road" index="0" node_paths=PackedStringArray("mesh_inst", "origin_node")]
 script = ExtResource("4_gx1m1")
+mesh_inst = NodePath("..")
+origin_node = NodePath("../..")
 
 [editable path="road"]

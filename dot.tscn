@@ -18,6 +18,7 @@ height = 0.4
 
 [node name="dot" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_kak6u")
+cast_shadow = 0
 mesh = SubResource("SphereMesh_qwom7")
 
 [node name="line" type="MeshInstance3D" parent="."]

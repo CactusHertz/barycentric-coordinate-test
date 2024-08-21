@@ -16,9 +16,8 @@ func _process(delta):
 
 	rotate_object_local(Vector3(0, 1, 0), rot_speed * input_vector.x)
 	align_to_floor(up_normal)
-	
-	
-	
+
+
 func align_to_floor(up_normal: Vector3):
 	var forward = self.transform.basis.z
 	var up = up_normal.normalized()
