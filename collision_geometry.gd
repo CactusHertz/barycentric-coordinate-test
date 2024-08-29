@@ -2,10 +2,11 @@ extends Node3D
 class_name CollisionGeometry
 
 @export var mesh_inst : MeshInstance3D
-@export var origin_node : Node3D
 var mesh: Mesh
 var mesh_data: MeshDataTool
-var origin_offset := Vector3.ZERO
+
+@export var origin_node : Node3D
+
 
 func _ready() -> void:
 	if not mesh_inst:
@@ -21,11 +22,8 @@ func get_vertex_normals_at_face_index(index: float) -> Array[Vector3]:
 	return normals
 
 func get_vertex_positions_at_face_index(index: float) -> Array[Vector3]:
-	var origin_offset := Vector3.ZERO
-	if origin_node: 
-		origin_offset = origin_node.transform.origin
 	var vertices: Array[Vector3] = []
 	for i in range(0, 3):
-		vertices.append(mesh_data.get_vertex(mesh_data.get_face_vertex(index, i)) + origin_offset)
+		vertices.append(origin_node.global_transform * mesh_data.get_vertex(mesh_data.get_face_vertex(index, i)))
 	return vertices
 
