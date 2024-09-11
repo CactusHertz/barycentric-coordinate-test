@@ -69,5 +69,3 @@ func align_to_floor(up_normal: Vector3, marker: Node3D):
 	forward = right.cross(up).normalized()
 	var new_basis = Basis(right, up, forward)
 	marker.transform.basis = new_basis
-
-
